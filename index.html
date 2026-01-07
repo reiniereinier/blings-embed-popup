@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personalized Video</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      font-family: Arial, sans-serif;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrapper" class="wrapper">
+    <a id="blingsLink" href="#">
+      <img
+        src="https://ajeyvddhyklnihwjvuyh.supabase.co/storage/v1/object/public/gifs/1765303329650_Comp%201_1_optimized.gif"
+        alt="Your personalized video - click to play"
+      />
+    </a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search)
+
+    const bg = params.get('bg')
+    const name = params.get('name') || ''
+    const promo = params.get('promo_code') || ''
+
+    const wrapper = document.getElementById('wrapper')
+    const link = document.getElementById('blingsLink')
+
+    if (bg) {
+      wrapper.style.backgroundImage = `url(${bg})`
+    }
+
+    const blingsUrl = new URL('https://mp5.blings.io/BPyGWVVZ')
+    if (name) blingsUrl.searchParams.set('name', name)
+    if (promo) blingsUrl.searchParams.set('promo_code', promo)
+
+    link.href = blingsUrl.toString()
+  </script>
+</body>
+</html>
