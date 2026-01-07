@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personalized Video</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Blings Embed</title>
 
   <style>
     html, body {
@@ -11,68 +12,64 @@
       padding: 0;
       width: 100%;
       height: 100%;
+    }
+
+    body {
+      line-height: 0;
       background: transparent;
-      font-family: Arial, sans-serif;
     }
 
-    .wrapper {
-      width: 100%;
-      max-width: 600px;
-      aspect-ratio: 1 / 1;
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
     }
 
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
+    td {
+      padding: 0;
+      margin: 0;
+      line-height: 0;
     }
 
     img {
-      width: 100%;
-      height: auto;
       display: block;
       border: 0;
+      margin: 0;
+      padding: 0;
+      vertical-align: top;
     }
   </style>
 </head>
 
 <body>
-  <div id="wrapper" class="wrapper">
-    <a id="blingsLink" href="#">
-      <img
-        src="https://ajeyvddhyklnihwjvuyh.supabase.co/storage/v1/object/public/gifs/1765303329650_Comp%201_1_optimized.gif"
-        alt="Your personalized video - click to play"
-      />
-    </a>
-  </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search)
+<table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%" style="max-width:600px; margin:0 auto; border-collapse:collapse;">
+  <tr>
+    <td align="center"
+        background="https://t.blings.io/deecfbc6-bead-441b-be19-fb9e39faef4f/{{Param1}}"
+        style="background-repeat:no-repeat; background-position:center; background-size:cover; padding:0; margin:0;">
 
-    const bg = params.get('bg')
-    const name = params.get('name') || ''
-    const promo = params.get('promo_code') || ''
+      <!--[if gte mso 9]>
+      <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:600px;">
+        <v:fill type="frame" src="https://t.blings.io/deecfbc6-bead-441b-be19-fb9e39faef4f/{{Param1}}" />
+        <v:textbox inset="0,0,0,0">
+      <![endif]-->
 
-    const wrapper = document.getElementById('wrapper')
-    const link = document.getElementById('blingsLink')
+      <a href="https://mp5.blings.io/BPyGWVVZ?name=Aman&promo_code=MOF123"
+         style="display:block; text-decoration:none; color:inherit; line-height:0;">
+        <img
+          src="https://ajeyvddhyklnihwjvuyh.supabase.co/storage/v1/object/public/gifs/1765303329650_Comp%201_1_optimized.gif"
+          alt="Your personalized video - click to play"
+          width="600"
+          height="600"
+          style="display:block; width:100%; height:auto; border:0; max-width:600px; margin:0; padding:0;">
+      </a>
 
-    if (bg) {
-      wrapper.style.backgroundImage = `url(${bg})`
-    }
+      <!--[if gte mso 9]></v:textbox></v:rect><![endif]-->
 
-    const blingsUrl = new URL('https://mp5.blings.io/BPyGWVVZ')
-    if (name) blingsUrl.searchParams.set('name', name)
-    if (promo) blingsUrl.searchParams.set('promo_code', promo)
+    </td>
+  </tr>
+</table>
 
-    link.href = blingsUrl.toString()
-  </script>
 </body>
 </html>
