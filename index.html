@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Blings Embed</title>
+  <title>Blings Fullscreen Player</title>
 
   <style>
     html, body {
@@ -12,64 +12,65 @@
       padding: 0;
       width: 100%;
       height: 100%;
+      background: black;
     }
 
-    body {
-      line-height: 0;
-      background: transparent;
-    }
-
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin: 0 auto;
-    }
-
-    td {
-      padding: 0;
-      margin: 0;
-      line-height: 0;
-    }
-
-    img {
-      display: block;
-      border: 0;
-      margin: 0;
-      padding: 0;
-      vertical-align: top;
+    #video-container {
+      width: 100%;
+      height: 100%;
     }
   </style>
+
+  <script src="https://assets.blings.io/scripts/msdk4.js"></script>
 </head>
 
 <body>
 
-<table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%" style="max-width:600px; margin:0 auto; border-collapse:collapse;">
-  <tr>
-    <td align="center"
-        background="https://t.blings.io/deecfbc6-bead-441b-be19-fb9e39faef4f/"
-        style="background-repeat:no-repeat; background-position:center; background-size:cover; padding:0; margin:0;">
+  <div id="video-container"></div>
 
-      <!--[if gte mso 9]>
-      <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:600px;">
-        <v:fill type="frame" src="https://t.blings.io/deecfbc6-bead-441b-be19-fb9e39faef4f/{{Param1}}" />
-        <v:textbox inset="0,0,0,0">
-      <![endif]-->
+  <script>
+    setTimeout(function () {
+      if (!window.BlingsPlayer) return;
 
-      <a href="https://mp5.blings.io/BPyGWVVZ?name=Aman&promo_code=MOF123"
-         style="display:block; text-decoration:none; color:inherit; line-height:0;">
-        <img
-          src="https://ajeyvddhyklnihwjvuyh.supabase.co/storage/v1/object/public/gifs/1765303329650_Comp%201_1_optimized.gif"
-          alt="Your personalized video - click to play"
-          width="600"
-          height="600"
-          style="display:block; width:100%; height:auto; border:0; max-width:600px; margin:0; padding:0;">
-      </a>
+      BlingsPlayer.create({
+        project: { id: "879d7f03-37eb-4c25-9e8a-8cc35128eb3f" },
+        settings: {
+          container: document.getElementById("video-container"),
+          cinematic: true,
+          autoplay: false,
+          muted: true,
+          playsinline: true
+        }
+      });
 
-      <!--[if gte mso 9]></v:textbox></v:rect><![endif]-->
+      const waitForVideo = () => {
+        const video = document.querySelector("video");
+        if (!video) {
+          setTimeout(waitForVideo, 200);
+          return;
+        }
 
-    </td>
-  </tr>
-</table>
+        video.muted = true;
+        video.volume = 0;
+
+        const enterFullscreenOnPlay = () => {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+
+          video.removeEventListener("play", enterFullscreenOnPlay);
+        };
+
+        video.addEventListener("play", enterFullscreenOnPlay, { once: true });
+      };
+
+      waitForVideo();
+    }, 500);
+  </script>
 
 </body>
 </html>
