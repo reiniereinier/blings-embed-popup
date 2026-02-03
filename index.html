@@ -57,14 +57,13 @@
 
   <script>
     var scenes = [
-      { lineup: "flow" }
+      { lineup: "no name flow" }
     ];
 
     //console.log(window.location.href);
+    const cValue = new URLSearchParams(window.location.search).get("c");
     var data = {
-      c: 1234,
-      n: "{{first_name}}",
-      flow: "1"
+      c: cValue,
     };
 
     var settings = {
