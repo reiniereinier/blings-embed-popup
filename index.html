@@ -56,15 +56,19 @@
   </div>
 
   <script>
-    var scenes = [
-      { lineup: "no name flow" }
-    ];
 
     //console.log(window.location.href);
     const cValue = new URLSearchParams(window.location.search).get("c");
     const UID = new URLSearchParams(window.location.search).get("uid");
+    const name = new URLSearchParams(window.location.search).get("name");
+    
+    var scenes = !!name ? [{ lineup: "flow" }] : [
+      { lineup: "no name flow" }
+    ];
+    
     var data = {
       c: cValue,
+      n: name,
     };
 
     var settings = {
