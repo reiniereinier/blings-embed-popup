@@ -62,6 +62,7 @@
 
     //console.log(window.location.href);
     const cValue = new URLSearchParams(window.location.search).get("c");
+    const UID = new URLSearchParams(window.location.search).get("uid");
     var data = {
       c: cValue,
     };
@@ -76,7 +77,8 @@
       project: { id: "879d7f03-37eb-4c25-9e8a-8cc35128eb3f" },
       data,
       settings,
-      scenes
+      scenes,
+      uid: UID,
     });
   </script>
 </body>
